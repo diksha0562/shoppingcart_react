@@ -1,0 +1,6 @@
+[
+    {"id":"0", "product_type": "top", "price" : "799"},
+    {"id":"1", "product_type": "dress", "price" : "799"},
+    {"id":"2", "product_type": "jeans", "price" : "799"},
+    {"id":"3", "product_type": "shirt", "price" : "799"}
+]
