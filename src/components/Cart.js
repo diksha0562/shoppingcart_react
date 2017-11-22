@@ -10,15 +10,26 @@ class Cart extends React.Component{
     }
     handleClear(){
         sessionStorage.setItem('cart_data',null);
+        this.setState({items:[]});
+    }
+    handleCheckout(){
+        let items = this.state.items;
+        let sum=0;
+        items.map((value,index)=>{
+            sum += (value.price).parseInt();
+            return sum; 
+        });
+        console.log('sum ',sum);
+        alert('total amount is ',{sum});
     }
 
-    // componentDidMount(){
-    //     // this.setState({items:read_cookie(cookie_key)});
-    //    this.setState({items:JSON.parse(sessionStorage.getItem("cart_data"))});
+    componentWillMount(){
+        // this.setState({items:read_cookie(cookie_key)});
+       this.setState({items:JSON.parse(sessionStorage.getItem("cart_data"))});
     //    console.log('state of cart items',JSON.parse(sessionStorage.getItem("cart_data")));
-    // }
+    }
     render(){
-        let cart_data_=JSON.parse(sessionStorage.getItem("cart_data"));
+        let cart_data_=this.state.items;
         return(
             <div>
                 <h2>CART</h2>
@@ -30,6 +41,7 @@ class Cart extends React.Component{
                 </table>:<div/>
                 }
                 <input type='button' value='clear' onClick={e=>this.handleClear()}/>
+                <input type='button' value='check out' onClick={e=>this.handleCheckout()}/>
             </div>
         )
     }
