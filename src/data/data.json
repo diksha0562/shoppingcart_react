@@ -2,5 +2,5 @@
     {"id":"0", "product_type": "top", "price" : "799","image" :"../../images/top.jpg "},
     {"id":"1", "product_type": "dress", "price" : "799","image" :"../../images/dress.jpg"},
     {"id":"2", "product_type": "jeans", "price" : "799","image" :"../../images/jeans.jpg"},
-    {"id":"3", "product_type": "shirt", "price" : "799","image" :"../../images/shirt.jpg"}
+    {"id":"3", "product_type": "shirt", "price" : "799","image" :"../../images/top.jpg"}
 ]
