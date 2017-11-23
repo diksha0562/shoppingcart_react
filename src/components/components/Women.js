@@ -6,7 +6,7 @@ class Women extends React.Component{
         super(props);
         this.state={
             women_data:['hggh']
-        }
+        };
     }
     componentDidMount(){
         axios.get('https://raw.githubusercontent.com/diksha0562/shoppingcart_react/master/src/data/data.json')
@@ -17,8 +17,8 @@ class Women extends React.Component{
     render(){
         return(
             <div>
-                <h3>Women Wear</h3>
-                <Women_Table women_data={this.state.women_data}/>
+                <h2>Women Wear</h2>
+                <Women_Table women_data={this.state.women_data} onCartChange={this.props.onCartChange} cart_data={this.props.cart_data}/>
             </div>
         )
     }
