@@ -16,11 +16,11 @@ class Cart extends React.Component{
         let items = this.state.items;
         let sum=0;
         items.map((value,index)=>{
-            sum += (value.price).parseInt();
+            sum +=parseInt(value.price);
             return sum; 
         });
         console.log('sum ',sum);
-        alert('total amount is ',{sum});
+        alert('total amount is '+sum);
     }
 
     componentWillMount(){
