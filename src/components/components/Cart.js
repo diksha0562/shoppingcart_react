@@ -2,17 +2,13 @@ import React from 'react';
 class Cart extends React.Component{
     constructor(props){
         super(props);
-        this.state={
-            items:[]
-        }
     }
     handleClear(){
-        sessionStorage.setItem('cart_data',null);
-        this.setState({items:[]});
         sessionStorage.setItem('cart_counter',JSON.stringify(0));
+        this.props.onCartClear([]);
     }
     handleCheckout(){
-        let items = this.state.items;
+        let items = this.props.cart_data;
         let sum=0;
         items.map((value,index)=>{
             sum +=parseInt(value.price);
@@ -22,21 +18,18 @@ class Cart extends React.Component{
         alert('total amount is '+sum);
     }
     handleDelete(deleteindex){
+        console.log('delete index',deleteindex);
         if(confirm('Do you want to delete?')){
-            let afterdelete = (this.state.items).filter(item=>
+            let afterdelete = (this.props.cart_data).filter(item=>
             item.key!=deleteindex);
-            this.setState({items:afterdelete});
-            let  cartcounter;
-            cartcounter = parseInt(JSON.parse(sessionStorage.getItem("cart_counter")));  
-            sessionStorage.setItem('cart_counter',JSON.stringify(cartcounter-1));
-        }
-    }
-
-    componentWillMount(){
-       this.setState({items:JSON.parse(sessionStorage.getItem("cart_data"))});
+            console.log('afterdelete',afterdelete);
+           
+            
+            this.props.onCartDelete(afterdelete);
+             }
     }
     render(){
-        let cart_data_=this.state.items;
+        let cart_data_=this.props.cart_data;
         return(
             <div>
                 <h2>CART</h2>
