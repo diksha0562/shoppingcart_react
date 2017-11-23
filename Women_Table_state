@@ -1,0 +1,48 @@
+import React from 'react';
+class Women_Table extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+            items:[]
+        }
+    }
+    handleClick(product,item_price){
+        let newitem=[{product_type:product,price:item_price}];
+        let items= this.state.items;
+        let cartdata = [];
+        cartdata = JSON.parse(sessionStorage.getItem("cart_data"));
+        console.log('cartdata',cartdata)
+        items.push(newitem);
+        this.setState({items});
+        if(cartdata)
+        sessionStorage.setItem('cart_data',JSON.stringify(newitem.concat(cartdata)));
+        else
+        sessionStorage.setItem('cart_data',JSON.stringify(newitem));
+    }
+    render(){
+        console.log('props: ',this.props);
+        return(
+          <div>
+           <table className='womentable'> 
+               <tr>
+                   <th>Product Type</th>
+                   <th>Price</th>
+                   <th>Image</th>
+                </tr>
+               
+               {this.props.women_data.map((obj,index)=>{
+                    return (
+                            <tr key={index}>
+                              <td>{obj.product_type}</td>
+                              <td>{obj.price}</td>
+                              <td><img src={obj.image}/></td>
+                              <input type="button" value="Add to Cart" onClick={e=>this.handleClick(obj.product_type,obj.price)}/>
+                            </tr>
+                    );
+                })}
+            </table>              
+          </div>
+        )
+    }
+}
+export default Women_Table;
