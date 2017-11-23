@@ -5,14 +5,16 @@ import Home from './Home';
 import Cart from './Cart';
 class App extends React.Component {
    render() {
+       console.log('counter',JSON.parse(sessionStorage.getItem("cart_counter")));
       return (
+          <div>
           <Router>
          <div>
-            <ul>
-                <li><Link to ={'/'}>Home</Link></li>
-                <li><Link to ={'/Women'}>Women wear</Link></li>
-                <li><Link to={'/cart'}>Cart</Link></li>
-            </ul>
+            <div>
+                <div className='link'><Link to ={'/'}>Home</Link></div>
+                <div className='link'><Link to ={'/Women'}>Women wear</Link></div>
+                <div className='link'><Link to={'/cart'}>Cart</Link></div>
+            </div>
             <hr/>
             <Switch>
                 <Route exact path='/' component={Home}/>
@@ -21,6 +23,8 @@ class App extends React.Component {
             </Switch>
          </div>
          </Router>
+        
+         </div>
       );
    }
 }

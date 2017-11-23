@@ -3,7 +3,7 @@ class Home extends React.Component{
     render(){
         return(
             <div>
-                <h2>Welcome to Shopping</h2>
+                <h2>It's Shop O'Clock</h2>
             </div>
         )
     }

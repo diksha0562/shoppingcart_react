@@ -1,6 +1,4 @@
 import React from 'react';
-import {read_cookie, delete_cookie} from 'sfcookies';
-import {cookie_key} from './Women_Table';
 class Cart extends React.Component{
     constructor(props){
         super(props);
@@ -11,6 +9,7 @@ class Cart extends React.Component{
     handleClear(){
         sessionStorage.setItem('cart_data',null);
         this.setState({items:[]});
+        sessionStorage.setItem('cart_counter',JSON.stringify(0));
     }
     handleCheckout(){
         let items = this.state.items;
@@ -22,11 +21,19 @@ class Cart extends React.Component{
         console.log('sum ',sum);
         alert('total amount is '+sum);
     }
+    handleDelete(deleteindex){
+        if(confirm('Do you want to delete?')){
+            let afterdelete = (this.state.items).filter(item=>
+            item.key!=deleteindex);
+            this.setState({items:afterdelete});
+            let  cartcounter;
+            cartcounter = parseInt(JSON.parse(sessionStorage.getItem("cart_counter")));  
+            sessionStorage.setItem('cart_counter',JSON.stringify(cartcounter-1));
+        }
+    }
 
     componentWillMount(){
-        // this.setState({items:read_cookie(cookie_key)});
        this.setState({items:JSON.parse(sessionStorage.getItem("cart_data"))});
-    //    console.log('state of cart items',JSON.parse(sessionStorage.getItem("cart_data")));
     }
     render(){
         let cart_data_=this.state.items;
@@ -35,8 +42,18 @@ class Cart extends React.Component{
                 <h2>CART</h2>
                 {cart_data_!=null?
                 <table>
+                    <tr>
+                       <th>Product Type</th>
+                       <th>Price</th>
+                    </tr>
                 {cart_data_.map((item,index)=>{
-                    return <li key={index}>{item.product_type}{item.price}</li>
+                    return (
+                    <tr key={index}>
+                        <td>{item.product_type}</td>
+                        <td>{item.price}</td>
+                        <input type='button' value='Delete' onClick={e=>{this.handleDelete(item.key)}}/>
+                    </tr>
+                    );
                 })}
                 </table>:<div/>
                 }

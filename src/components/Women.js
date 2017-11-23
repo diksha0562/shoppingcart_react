@@ -17,7 +17,7 @@ class Women extends React.Component{
     render(){
         return(
             <div>
-                <h3>Women Wear</h3>
+                <h2>Women Wear</h2>
                 <Women_Table women_data={this.state.women_data}/>
             </div>
         )
