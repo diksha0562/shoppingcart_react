@@ -26,10 +26,8 @@ class Women_Table extends React.Component{
         console.log('props: ',this.props);
         console.log('counter',JSON.parse(sessionStorage.getItem("cart_counter")));
         return(
-          <div>
-             <h3>Number of items in cart {(this.props.cart_data).length}</h3>  
-             
-           <table className='womentable'> 
+          <div> 
+             <table className='womentable'> 
                 <tr>
                    <th>Product Type</th>
                    <th>Price</th>
@@ -46,7 +44,6 @@ class Women_Table extends React.Component{
                     );
                 })}
             </table> 
-
           </div>
         )
     }

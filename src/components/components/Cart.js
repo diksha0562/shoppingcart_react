@@ -23,8 +23,6 @@ class Cart extends React.Component{
             let afterdelete = (this.props.cart_data).filter(item=>
             item.key!=deleteindex);
             console.log('afterdelete',afterdelete);
-           
-            
             this.props.onCartDelete(afterdelete);
              }
     }

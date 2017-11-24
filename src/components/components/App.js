@@ -26,21 +26,21 @@ class App extends React.Component {
       return (
           <div>
             <Router>
+            <div>
                 <div>
-                <div>
-                <div className='link'><Link to ={'/'}>Home</Link></div>
-                <div className='link'><Link to ={'/Women'}>Women wear</Link></div>
-                <div className='link'><Link to={'/cart'}>Cart</Link></div>
-            </div>
+                    <div className='link'><Link to ={'/'}>Home</Link></div>
+                    <div className='link'><Link to ={'/Women'}>Women wear</Link></div>
+                    <div className='cart'><Link to={'/cart'}>Cart</Link></div>
+                    <div className='circle'>{(this.state.cart_data).length}</div>
+                </div>
             <hr/>
             <Switch>
                 <Route exact path='/' component={Home}/>
                 <Route exact path='/Women' render={(props)=>(<Women cart_data={this.state.cart_data} onCartChange={this.onCartChange}/>)}/>
                 <Route exact path='/cart' render={(props)=>(<Cart cart_data={this.state.cart_data} onCartClear={this.onCartClear} onCartDelete={this.onCartDelete}/>)}/>
             </Switch>
-         </div>
-         </Router>
-        
+           </div>
+           </Router>
          </div>
       );
    }
